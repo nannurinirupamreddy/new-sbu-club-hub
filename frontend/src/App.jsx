@@ -9,6 +9,7 @@ import SignUpPage from './pages/SignUpPage'
 import useAuthStore from '../store/useAuthStore'
 import DashboardPage from './pages/DashboardPage'
 import HomePage from './pages/HomePage'
+import AdminHomePage from './adminPanel/AdminHomePage'
 
 function App() {
 
@@ -24,10 +25,11 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={!authUser ? <HomePage /> : <Navigate to={"/dashboard"}/>} />
-        <Route path='/login' element={!authUser ? <LoginPage /> : <Navigate to={"/dashboard"} />} />
-        <Route path='/signup' element={!authUser ? <SignUpPage /> : <Navigate to={"/dashboard"} />} />
+        <Route path='/' element={!authUser ? <HomePage /> : (!authUser.admin ? <Navigate to={"/dashboard"} /> : <Navigate to={"/admin-panel"} />)} />
+        <Route path='/login' element={!authUser ? <LoginPage /> : (!authUser.admin ? <Navigate to={"/dashboard"} /> : <Navigate to={"/admin-panel"} />)} />
+        <Route path='/signup' element={!authUser ? <SignUpPage /> : (!authUser.admin ? <Navigate to={"/dashboard"} /> : <Navigate to={"/admin-panel"} />)} />
         <Route path='/dashboard' element={<DashboardPage />}/>
+        <Route path='/admin-panel' element={<AdminHomePage />}/>
       </Routes>
       <Toaster />
     </>

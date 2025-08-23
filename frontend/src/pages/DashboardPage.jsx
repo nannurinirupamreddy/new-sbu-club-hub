@@ -21,23 +21,23 @@ function DashboardPage() {
 
     if (isLoadingGames && !games) {
       return (
-        <div className='flex items-center justify-center h-screen'>
+        <div className='flex items-center justify-center h-screen w-full max-w-full'>
             <Loader className='size-10 animate-spin' />
         </div>
       )
     }
 
   return (
-    <>
+    <div className='w-full max-w-full'>
       <NavBarLoggedIn />
-      <div className="bg-gray-50 h-screen max-w-full flex justify-center p-4">
+      <div className="bg-gray-50 min-h-screen w-full flex justify-center p-4 max-w-full">
         {!games ? <h1 className='text-center font-bold text-2xl'>No games found!</h1> : (
-          <div className="flex-col justify-center items-center max-w-full max-h-full">
+          <div className="flex flex-col justify-center items-center w-full max-w-full max-h-full">
             {games.map((game, index) => { return (<GamesComponent name={game.name} description={game.description} availability={game.availability} key={index} />)})}
           </div>
         )}
       </div>
-    </>
+    </div>
   )
 }
 
