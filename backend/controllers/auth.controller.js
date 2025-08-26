@@ -30,6 +30,7 @@ async function signup(req, res) {
       lastName: user.lastName,
       sbuId: user.sbuId,
       email: user.email,
+      admin: user.admin,
     });
   } catch (error) {
     console.log("Error in signup route", error);
@@ -56,6 +57,7 @@ async function login(req, res) {
         lastName: user.lastName,
         sbuId: user.sbuId,
         email: user.email,
+        admin: user.admin,
       });
     } else {
       return res.status(400).json({ message: "Invalid Credentials!" });

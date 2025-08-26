@@ -11,6 +11,20 @@ async function getGames(req, res) {
   }
 }
 
+async function getGameById(req, res) {
+  try {
+    const gameId = req.params.id;
+    const game = await Game.findById(gameId);
+    if (!game) {
+      return res.status(404).json({ message: "Game not found!" });
+    }
+    return res.status(200).json(game);
+  } catch (error) {
+    console.log("Error in getting game by ID", error);
+    return res.status(500).json({ message: "Internal Server Error!" });
+  }
+}
+
 async function editGame(req, res) {
   try {
     const { _id, name, description, availability } = req.body;
@@ -68,6 +82,7 @@ async function deleteGame(req, res) {
 }
 
 module.exports.addGame = addGame;
+module.exports.getGameById = getGameById;
 module.exports.getGames = getGames;
 module.exports.editGame = editGame;
 module.exports.deleteGame = deleteGame;
