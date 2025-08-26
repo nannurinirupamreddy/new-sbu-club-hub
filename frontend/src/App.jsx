@@ -10,6 +10,7 @@ import useAuthStore from '../store/useAuthStore'
 import DashboardPage from './pages/DashboardPage'
 import HomePage from './pages/HomePage'
 import AdminHomePage from './adminPanel/AdminHomePage'
+import EditGamePage from './adminPanel/EditGamePage'
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
         <Route path='/signup' element={!authUser ? <SignUpPage /> : (!authUser.admin ? <Navigate to={"/dashboard"} /> : <Navigate to={"/admin-panel"} />)} />
         <Route path='/dashboard' element={<DashboardPage />}/>
         <Route path='/admin-panel' element={<AdminHomePage />}/>
+        <Route path='/admin-panel/edit-game/:_id' element={<EditGamePage />} />
       </Routes>
       <Toaster />
     </>
