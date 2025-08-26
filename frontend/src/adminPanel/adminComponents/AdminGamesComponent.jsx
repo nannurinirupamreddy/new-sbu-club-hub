@@ -1,8 +1,13 @@
 import { Circle, Pencil, Trash } from 'lucide-react'
 import { FaCircle } from "react-icons/fa"
-import React from 'react'
+import React, { useState } from 'react'
+import EditGamePage from '../EditGamePage'
+import { useNavigate } from 'react-router-dom';
 
-function AdminGamesComponent({name, description, availability}) {
+function AdminGamesComponent({_id, name, description, availability}) {
+
+    const navigate = useNavigate();
+
   return (
     <div className='bg-white w-[90%] sm:w-[600px] max-h-fit p-4 rounded-xl m-4 flex justify-between items-center'>
         <div className="w-[90%] h-[100%] flex flex-col justify-start items-start">
@@ -41,9 +46,10 @@ function AdminGamesComponent({name, description, availability}) {
             </div>
         </div>
         <div className="flex flex-col justify-between items-center h-full gap-2">
-            <button className='bg-primary text-white px-4 py-2 rounded-md cursor-pointer'><Pencil className='w-4 h-4' /></button>
+            <button className='bg-primary text-white px-4 py-2 rounded-md cursor-pointer'><Pencil className='w-4 h-4' onClick={() => navigate(`/admin-panel/edit-game/${_id}`)} /></button>
             <button className='bg-primary text-white px-4 py-2 rounded-md cursor-pointer'><Trash className='w-4 h-4' /></button>
         </div>
+
     </div>
   )
 }

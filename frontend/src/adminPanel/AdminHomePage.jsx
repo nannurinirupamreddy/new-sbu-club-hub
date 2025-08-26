@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import NavBarLoggedIn from '../components/NavBarLoggedIn'
 import useAuthStore from '../../store/useAuthStore'
 import useGamesStore from '../../store/useGamesStore'
@@ -36,7 +36,7 @@ function AdminHomePage() {
             <button className='bg-primary text-white px-4 py-2 rounded-md'>Add Game</button>
           </div>
           <div className="flex flex-col justify-center items-center w-full max-w-full max-h-full mt-4">
-            {games.map((game, index) => { return (<AdminGamesComponent name={game.name} description={game.description} availability={game.availability} key={index} />)})}
+            {games.map((game, index) => { return (<AdminGamesComponent _id={game._id} name={game.name} description={game.description} availability={game.availability} key={index}/>)})}
           </div>
         </div>
     </div>
