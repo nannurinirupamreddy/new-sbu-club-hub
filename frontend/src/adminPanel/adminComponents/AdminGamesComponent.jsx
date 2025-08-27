@@ -1,12 +1,15 @@
 import { Circle, Pencil, Trash } from 'lucide-react'
 import { FaCircle } from "react-icons/fa"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import EditGamePage from '../EditGamePage'
 import { useNavigate } from 'react-router-dom';
+import useGamesStore from '../../../store/useGamesStore';
 
 function AdminGamesComponent({_id, name, description, availability}) {
 
     const navigate = useNavigate();
+
+    const {deleteGame} = useGamesStore();
 
   return (
     <div className='bg-white w-[90%] sm:w-[600px] max-h-fit p-4 rounded-xl m-4 flex justify-between items-center'>
@@ -32,9 +35,9 @@ function AdminGamesComponent({_id, name, description, availability}) {
                         </>
                     ) : (
                         <>
-                            <div className="max-w-fit bg-gray-200 flex justify-center items-center p-1.5 rounded-md">
+                            <div className="max-w-fit bg-red-200 flex justify-center items-center p-1.5 rounded-md">
                                 <div className="max-w-fit">
-                                    <Circle className='text-gray-400 w-4' />
+                                    <FaCircle className='text-red-400 w-4' />
                                 </div>
                                 <div className="max-w-fit ml-1.5">
                                     <p className='text-black font-semibold'>Occupied</p>
@@ -47,7 +50,7 @@ function AdminGamesComponent({_id, name, description, availability}) {
         </div>
         <div className="flex flex-col justify-between items-center h-full gap-2">
             <button className='bg-primary text-white px-4 py-2 rounded-md cursor-pointer'><Pencil className='w-4 h-4' onClick={() => navigate(`/admin-panel/edit-game/${_id}`)} /></button>
-            <button className='bg-primary text-white px-4 py-2 rounded-md cursor-pointer'><Trash className='w-4 h-4' /></button>
+            <button className='bg-primary text-white px-4 py-2 rounded-md cursor-pointer'><Trash className='w-4 h-4' onClick={() => {deleteGame(_id)}} /></button>
         </div>
 
     </div>

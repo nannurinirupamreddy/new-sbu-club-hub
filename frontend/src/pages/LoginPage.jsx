@@ -32,13 +32,13 @@ function LoginPage() {
     <>
       <main className='max-w-full h-screen bg-[#a60f16]'>
         <div className="h-full flex justify-center items-center">
-            <div className="flex bg-white rounded-xl w-[90%] h-[80%] md:w-[600px] shadow-md">
-                <div className="flex-col justify-center items-center w-[100%]">
-                    <div className="flex justify-center h-[40%]">
+            <div className="flex bg-white rounded-xl w-[90%] h-[90%] md:w-[600px] shadow-md">
+                <div className="flex-col justify-center items-center w-full">
+                    <div className="flex justify-center h-[30%]">
                         <img src="./seawolves.png" alt="Seawolves" className='h-[100%]'/>
                     </div>
                     <h1 className='text-xl font-bold text-center'>Welcome Back, Seawolf!</h1>
-                    <form onSubmit={handleSubmit} className='p-4'>
+                    <form onSubmit={handleSubmit} className='p-4 flex flex-col gap-4'>
                         <div className="mb-4">
                             <label htmlFor="email" className="block text-sm font-medium text-gray-600 mb-2">Email</label>
                             <input
@@ -70,7 +70,7 @@ function LoginPage() {
                             </> : ( "Login" )}
                         </button>
                     </form>
-                    <div className="text-center mt-6">
+                    <div className="text-center mt-1 h-[10%]">
                         <p className="text-sm text-gray-600">Don't have an account?{" "}
                         <Link
                         to="/signup"

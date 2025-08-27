@@ -5,28 +5,10 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import useGamesStore from '../../store/useGamesStore';
 import { ArrowLeft } from 'lucide-react';
 
-function EditGamePage() {
+function AddGamePage() {
 
-  const { gameToEdit, getGameToEdit, editGame } = useGamesStore();
+  const { addGame } = useGamesStore();
   
-  const {_id} = useParams();
-
-  useEffect(() => {
-    if (_id) {
-      getGameToEdit(_id);
-    }
-  }, [_id, getGameToEdit]);
-
-  useEffect(() => {
-    if (gameToEdit) {
-      setFormData({
-        name: gameToEdit.name || "",
-        description: gameToEdit.description || "",
-        availability: gameToEdit.availability ?? true
-      });
-    }
-  }, [gameToEdit]);
-
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -43,7 +25,7 @@ function EditGamePage() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    editGame(_id, formData, navigate);
+    addGame(formData, navigate);
   }
 
   return (
@@ -57,7 +39,7 @@ function EditGamePage() {
           <form>
             <div className="flex flex-col justify-start items-start w-[90%] sm:w-[600px] m-auto">
               <div className="font-bold text-3xl mb-4">
-                <h2>Edit Game</h2>
+                <h2>Add Game</h2>
               </div>
               <div className="w-full mb-4">
                 <label className='font-semibold text-lg'>Game Name</label>
@@ -75,7 +57,7 @@ function EditGamePage() {
                 </select>
               </div>
               <div className="w-full flex justify-end items-center">
-                <button type="submit" className='bg-primary text-white px-4 py-2 rounded-md cursor-pointer' onClick={handleSubmit}>Save Changes</button>
+                <button type="submit" className='bg-primary text-white px-4 py-2 rounded-md cursor-pointer' onClick={handleSubmit}>Add Game</button>
               </div>
             </div>
           </form>
@@ -85,4 +67,4 @@ function EditGamePage() {
   )
 }
 
-export default EditGamePage
+export default AddGamePage
