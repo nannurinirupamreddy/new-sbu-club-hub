@@ -29,12 +29,28 @@ const useGamesStore = create((set) => ({
       toast.error(error.response.data.message);
     }
   },
+  addGame: async (gameData, navigate) => {
+    set({isAddingGame: true});
+    try {
+      const res = await axiosInstance.post("/games", gameData);
+      if (res.data) {
+        toast.success("Game added successfully!");
+        navigate("/admin-panel");
+      }
+    } catch (error) {
+      console.log("Error in adding game react");
+      toast.error(error.response.data.message);
+    } finally {
+      set({isAddingGame: false});
+    }
+  },
   editGame: async (_id, gameData, navigate) => {
     set({ isEditingGame: true });
     try {
       const res = await axiosInstance.put(`/games/${_id}`, gameData);
       if (res.data) {
         toast.success("Game edited successfully");
+        set({gameToEdit: null});
         navigate('/admin-panel');
       }
     } catch (error) {
@@ -42,6 +58,20 @@ const useGamesStore = create((set) => ({
       toast.error(error.response.data.message);
     } finally {
       set({ isEditingGame: false });
+    }
+  },
+  deleteGame: async (_id) => {
+    set({isDeletingGame: true});
+    try {
+      const res = await axiosInstance.delete(`/games/${_id}`);
+      if (res.data) {
+        toast.success(`${res.data.name} deleted successfully!`);
+      }
+    } catch (error) {
+      console.log("error in deleting game react", error);
+      toast.error(error.response.data.message);
+    } finally {
+      set({isDeletingGame: false});
     }
   }
 }));

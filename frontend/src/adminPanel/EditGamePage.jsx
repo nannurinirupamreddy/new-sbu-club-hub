@@ -8,20 +8,32 @@ import { ArrowLeft } from 'lucide-react';
 function EditGamePage() {
 
   const { gameToEdit, getGameToEdit, editGame } = useGamesStore();
+  
+  const {_id} = useParams();
 
   useEffect(() => {
-    getGameToEdit(_id);
-  }, [getGameToEdit]);
+    if (_id) {
+      getGameToEdit(_id);
+    }
+  }, [_id, getGameToEdit]);
+
+  useEffect(() => {
+    if (gameToEdit) {
+      setFormData({
+        name: gameToEdit.name || "",
+        description: gameToEdit.description || "",
+        availability: gameToEdit.availability ?? true
+      });
+    }
+  }, [gameToEdit]);
 
   const [formData, setFormData] = useState({
-    name: gameToEdit ? gameToEdit.name : "",
-    description: gameToEdit ? gameToEdit.description : "",
-    availability: gameToEdit ? gameToEdit.availability : true
+    name: "",
+    description: "",
+    availability: true
   });
 
   const navigate = useNavigate();
-
-  const {_id} = useParams();
 
   const {authUser} = useAuthStore();
 

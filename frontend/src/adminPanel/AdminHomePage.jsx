@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import NavBarLoggedIn from '../components/NavBarLoggedIn'
 import useAuthStore from '../../store/useAuthStore'
 import useGamesStore from '../../store/useGamesStore'
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { Loader } from 'lucide-react';
-import GamesComponent from '../components/GamesComponent'
 import AdminGamesComponent from './adminComponents/AdminGamesComponent'
 
 function AdminHomePage() {
+
+  const navigate = useNavigate();
+
 
   const {authUser} = useAuthStore();
     const {isLoadingGames, games, getGames} = useGamesStore();
@@ -33,7 +35,7 @@ function AdminHomePage() {
         <NavBarLoggedIn />
         <div className='bg-gray-50 w-full p-4 max-w-full h-fit'>
           <div className="flex justify-end w-full max-w-full h-fit">
-            <button className='bg-primary text-white px-4 py-2 rounded-md'>Add Game</button>
+            <button className='bg-primary text-white px-4 py-2 rounded-md cursor-pointer' onClick={() => navigate("/admin-panel/add-game")}>Add Game</button>
           </div>
           <div className="flex flex-col justify-center items-center w-full max-w-full max-h-full mt-4">
             {games.map((game, index) => { return (<AdminGamesComponent _id={game._id} name={game.name} description={game.description} availability={game.availability} key={index}/>)})}

@@ -27,10 +27,12 @@ async function getGameById(req, res) {
 
 async function editGame(req, res) {
   try {
-    const { _id, name, description, availability } = req.body;
+    const { id } = req.params;
+
+    const { name, description, availability } = req.body;
 
     const game = await Game.findByIdAndUpdate(
-      _id,
+      id,
       {
         name: name,
         description: description,

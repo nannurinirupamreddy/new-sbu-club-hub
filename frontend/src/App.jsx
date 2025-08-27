@@ -11,6 +11,7 @@ import DashboardPage from './pages/DashboardPage'
 import HomePage from './pages/HomePage'
 import AdminHomePage from './adminPanel/AdminHomePage'
 import EditGamePage from './adminPanel/EditGamePage'
+import AddGamePage from './adminPanel/AddGamePage'
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
         <Route path='/dashboard' element={<DashboardPage />}/>
         <Route path='/admin-panel' element={<AdminHomePage />}/>
         <Route path='/admin-panel/edit-game/:_id' element={<EditGamePage />} />
+        <Route path='/admin-panel/add-game/' element={<AddGamePage />}/>
       </Routes>
       <Toaster />
     </>
