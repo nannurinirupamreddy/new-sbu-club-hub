@@ -13,7 +13,7 @@ async function generateToken(id, role, res) {
   res.cookie("jwt_token", token, {
     httpOnly: true,
     secure: true,
-    sameSite: "lax", // Changed from "none" to "lax" for better mobile support
+    sameSite: "none",
     path: "/",
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
