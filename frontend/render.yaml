@@ -1,0 +1,8 @@
+services:
+  - type: static
+    name: your-vite-app
+    # ...other settings
+    redirects:
+      - from: /.*
+        to: /index.html
+        status: 200
