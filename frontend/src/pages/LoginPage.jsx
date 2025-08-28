@@ -30,130 +30,78 @@ function LoginPage() {
 
   return (
     <>
-      <main className='max-w-full h-screen bg-[#a60f16]'>
-        <div className="h-full flex justify-center items-center">
-            <div className="flex bg-white rounded-xl w-[90%] h-[90%] md:w-[600px] shadow-md">
-                <div className="flex-col justify-center items-center w-full">
-                    <div className="flex justify-center h-[30%]">
-                        <img src="./seawolves.png" alt="Seawolves" className='h-[100%]'/>
-                    </div>
-                    <h1 className='text-xl font-bold text-center'>Welcome Back, Seawolf!</h1>
-                    <form onSubmit={handleSubmit} className='p-4 flex flex-col gap-4'>
-                        <div className="mb-4">
-                            <label htmlFor="email" className="block text-sm font-medium text-gray-600 mb-2">Email</label>
-                            <input
+      <main className='min-h-screen bg-[#a60f16] flex items-center justify-center p-4'>
+        <div className="w-full max-w-md bg-white rounded-xl shadow-md overflow-hidden">
+            {/* Image Section */}
+            <div className="flex justify-center p-4 bg-gray-50">
+                <img 
+                    src="/seawolves.png" 
+                    alt="Seawolves" 
+                    className='h-20 w-20 object-contain'
+                />
+            </div>
+            
+            {/* Title */}
+            <h1 className='text-xl font-bold text-center py-2 text-gray-800'>Welcome Back, Seawolf!</h1>
+            
+            {/* Form Section */}
+            <div className="p-6">
+                <form onSubmit={handleSubmit} className='space-y-4'>
+                    <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-600 mb-1">Email</label>
+                        <input
                             type="email"
                             id="email"
-                            className="w-full p-2 border border-gray-300 rounded-md"
+                            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a60f16] focus:border-transparent"
                             placeholder="example@stonybrook.edu"
                             value={formData.email}
                             onChange={(e) => setFormData({...formData, email: e.target.value})}
-                            />
-                        </div>
-                        <div className="mb-6 relative">
-                            <label htmlFor="password" className="block text-sm font-medium text-gray-600 mb-2">Password</label>
-                            <input
+                        />
+                    </div>
+                    
+                    <div className="relative">
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-600 mb-1">Password</label>
+                        <input
                             type={showPassword ? "text" : "password"}
                             id="password"
-                            className="w-full p-2 border border-gray-300 rounded-md"
+                            className="w-full p-2 pr-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a60f16] focus:border-transparent"
                             placeholder="********"
                             value={formData.password}
                             onChange={(e) => setFormData({...formData, password: e.target.value})}
-                            />
-                            <button type="button" onClick={() => setShowPassword(!showPassword)} className='absolute inset-y-0 right-2 flex items-center top-[30px] cursor-pointer'>
-                                {showPassword ? <EyeOff /> : <Eye />}
-                            </button>
-                        </div>
-                        <button type="submit" disabled={isLoggingIn} className="w-full bg-[#a60f16] text-white py-2 rounded-md cursor-pointer">
-                            {isLoggingIn ? <>
-                                Logging In...
-                            </> : ( "Login" )}
-                        </button>
-                    </form>
-                    <div className="text-center mt-1 h-[10%]">
-                        <p className="text-sm text-gray-600">Don't have an account?{" "}
-                        <Link
-                        to="/signup"
-                        className="text-[#a60f16] font-semibold hover:underline"
+                        />
+                        <button 
+                            type="button" 
+                            onClick={() => setShowPassword(!showPassword)} 
+                            className='absolute right-2 top-7 text-gray-500 hover:text-gray-700'
                         >
-                        Signup
-                        </Link>
-                        </p>
+                            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                        </button>
                     </div>
+                    
+                    <button 
+                        type="submit" 
+                        disabled={isLoggingIn} 
+                        className="w-full bg-[#a60f16] text-white py-2 rounded-md font-medium hover:bg-[#870c12] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                        {isLoggingIn ? "Logging In..." : "Login"}
+                    </button>
+                </form>
+                
+                <div className="text-center mt-4">
+                    <p className="text-sm text-gray-600">Don't have an account?{" "}
+                        <Link
+                            to="/signup"
+                            className="text-[#a60f16] font-semibold hover:underline"
+                        >
+                            Signup
+                        </Link>
+                    </p>
                 </div>
             </div>
         </div>
       </main>
     </>
   )
-//         return (
-//     <main className="max-w-full min-h-screen bg-[#a60f16] flex justify-center items-center px-4">
-//       <div className="flex flex-col bg-white rounded-xl shadow-lg w-full max-w-lg p-8">
-//         <div className="flex justify-center mb-6">
-//           <img
-//             src="./seawolves.png"
-//             alt="Seawolves"
-//             className="h-24 md:h-32 object-contain"
-//           />
-//         </div>
-
-//         <h1 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-2">
-//           Welcome Back, Seawolf!
-//         </h1>
-        
-//         <form className="space-y-5">
-//           <div>
-//             <label
-//               htmlFor="email"
-//               className="block text-sm font-medium text-gray-600 mb-2"
-//             >
-//               Email
-//             </label>
-//             <input
-//               type="email"
-//               id="email"
-//               className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a60f16]"
-//               placeholder="example@stonybrook.edu"
-//             />
-//           </div>
-
-//           <div>
-//             <label
-//               htmlFor="password"
-//               className="block text-sm font-medium text-gray-600 mb-2"
-//             >
-//               Password
-//             </label>
-//             <input
-//               type="password"
-//               id="password"
-//               className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a60f16]"
-//               placeholder="********"
-//             />
-//           </div>
-
-//           <button
-//             type="submit"
-//             className="w-full bg-[#a60f16] text-white py-3 rounded-md hover:bg-[#870c12] transition-colors duration-200 font-medium cursor-pointer"
-//           >
-//             Login
-//           </button>
-//         </form>
-
-//         <div className="text-center mt-6">
-//           <p className="text-sm text-gray-600">
-//             Don't have an account?{" "}
-//             <Link
-//               to="/signup"
-//               className="text-[#a60f16] font-semibold hover:underline"
-//             >
-//               Signup
-//             </Link>
-//           </p>
-//         </div>
-//       </div>
-//     </main>
-//   );
 }
 
 export default LoginPage

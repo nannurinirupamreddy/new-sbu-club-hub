@@ -54,12 +54,18 @@ async function editGame(req, res) {
 
 async function addGame(req, res) {
   try {
-    const { name, description } = req.body;
+    const { name, description, availability } = req.body;
+    
+    console.log('Received game data:', { name, description, availability });
+    console.log('Full request body:', req.body);
 
     const game = new Game({
       name: name,
       description: description,
+      availability: availability !== undefined ? availability : true,
     });
+
+    console.log('Game object being saved:', game);
 
     await game.save();
 
