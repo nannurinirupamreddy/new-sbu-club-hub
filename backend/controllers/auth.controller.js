@@ -73,7 +73,7 @@ async function logout(req, res) {
     res.clearCookie("jwt_token", {
       httpOnly: true,
       secure: true,
-      sameSite: "none",
+      sameSite: "lax", // Match the sameSite setting from login
       path: "/",
     });
     res.status(200).json({ message: "Logged out succesfully!" });
