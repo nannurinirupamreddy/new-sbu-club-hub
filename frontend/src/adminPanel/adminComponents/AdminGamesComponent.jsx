@@ -1,4 +1,4 @@
-import { Circle, Pencil, Trash } from 'lucide-react'
+import { Circle, Pencil, Trash, Loader } from 'lucide-react'
 import { FaCircle } from "react-icons/fa"
 import React, { useEffect, useState } from 'react'
 import EditGamePage from '../EditGamePage'
@@ -9,7 +9,13 @@ function AdminGamesComponent({_id, name, description, availability}) {
 
     const navigate = useNavigate();
 
-    const {deleteGame} = useGamesStore();
+    const {deleteGame, isDeletingGame} = useGamesStore();
+
+    const handleDelete = async () => {
+        if (window.confirm(`Are you sure you want to delete "${name}"?`)) {
+            await deleteGame(_id);
+        }
+    };
 
   return (
     <div className='bg-white w-[90%] sm:w-[600px] max-h-fit p-4 rounded-xl m-4 flex justify-between items-center'>
@@ -49,8 +55,23 @@ function AdminGamesComponent({_id, name, description, availability}) {
             </div>
         </div>
         <div className="flex flex-col justify-between items-center h-full gap-2">
-            <button className='bg-primary text-white px-4 py-2 rounded-md cursor-pointer'><Pencil className='w-4 h-4' onClick={() => navigate(`/admin-panel/edit-game/${_id}`)} /></button>
-            <button className='bg-primary text-white px-4 py-2 rounded-md cursor-pointer'><Trash className='w-4 h-4' onClick={() => {deleteGame(_id)}} /></button>
+            <button 
+                className='bg-primary text-white px-4 py-2 rounded-md cursor-pointer hover:bg-primary/90 transition-colors'
+                onClick={() => navigate(`/admin-panel/edit-game/${_id}`)}
+            >
+                <Pencil className='w-4 h-4' />
+            </button>
+            <button 
+                className='bg-red-600 text-white px-4 py-2 rounded-md cursor-pointer hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
+                onClick={handleDelete}
+                disabled={isDeletingGame}
+            >
+                {isDeletingGame ? (
+                    <Loader className='w-4 h-4 animate-spin' />
+                ) : (
+                    <Trash className='w-4 h-4' />
+                )}
+            </button>
         </div>
 
     </div>

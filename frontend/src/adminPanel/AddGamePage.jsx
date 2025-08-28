@@ -25,6 +25,7 @@ function AddGamePage() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    console.log('Form data being sent:', formData);
     addGame(formData, navigate);
   }
 
@@ -36,7 +37,7 @@ function AddGamePage() {
           <button className='bg-primary text-white px-4 py-2 rounded-md cursor-pointer' onClick={() => navigate(-1)}><ArrowLeft className='w-4 h-4' /></button>
         </div>
         <div className="flex-col gap-6 ">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="flex flex-col justify-start items-start w-[90%] sm:w-[600px] m-auto">
               <div className="font-bold text-3xl mb-4">
                 <h2>Add Game</h2>
@@ -51,13 +52,17 @@ function AddGamePage() {
               </div>
               <div className="w-full mb-4">
                 <label className='font-semibold text-lg'>Availability</label>
-                <select className='w-full border border-gray-300 rounded-md p-2 mt-2 focus:outline-none focus:ring-2 focus:ring-primary' onChange={(e) =>setFormData({ ...formData, availability: e.target.value === "true" })} value={String(formData.availability)}>
-                  <option value={true}>Available</option>
-                  <option value={false}>Occupied</option>
+                <select 
+                  className='w-full border border-gray-300 rounded-md p-2 mt-2 focus:outline-none focus:ring-2 focus:ring-primary' 
+                  onChange={(e) => setFormData({ ...formData, availability: e.target.value === "true" })} 
+                  value={String(formData.availability)}
+                >
+                  <option value="true">Available</option>
+                  <option value="false">Occupied</option>
                 </select>
               </div>
               <div className="w-full flex justify-end items-center">
-                <button type="submit" className='bg-primary text-white px-4 py-2 rounded-md cursor-pointer' onClick={handleSubmit}>Add Game</button>
+                <button type="submit" className='bg-primary text-white px-4 py-2 rounded-md cursor-pointer'>Add Game</button>
               </div>
             </div>
           </form>

@@ -32,9 +32,15 @@ const useGamesStore = create((set) => ({
   addGame: async (gameData, navigate) => {
     set({isAddingGame: true});
     try {
+      console.log('Sending game data to backend:', gameData);
       const res = await axiosInstance.post("/games", gameData);
       if (res.data) {
+        console.log('Response from backend:', res.data);
         toast.success("Game added successfully!");
+        // Update local state by adding the new game
+        set((state) => ({
+          games: state.games ? [...state.games, res.data] : [res.data]
+        }));
         navigate("/admin-panel");
       }
     } catch (error) {
@@ -50,7 +56,13 @@ const useGamesStore = create((set) => ({
       const res = await axiosInstance.put(`/games/${_id}`, gameData);
       if (res.data) {
         toast.success("Game edited successfully");
-        set({gameToEdit: null});
+        // Update local state by updating the edited game
+        set((state) => ({
+          games: state.games.map(game => 
+            game._id === _id ? { ...game, ...gameData } : game
+          ),
+          gameToEdit: null
+        }));
         navigate('/admin-panel');
       }
     } catch (error) {
@@ -66,6 +78,10 @@ const useGamesStore = create((set) => ({
       const res = await axiosInstance.delete(`/games/${_id}`);
       if (res.data) {
         toast.success(`${res.data.name} deleted successfully!`);
+        // Update local state by removing the deleted game
+        set((state) => ({
+          games: state.games ? state.games.filter(game => game._id !== _id) : []
+        }));
       }
     } catch (error) {
       console.log("error in deleting game react", error);
