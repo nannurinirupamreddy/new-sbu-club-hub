@@ -132,7 +132,7 @@ function SignUpPage() {
                     <button 
                         type='submit' 
                         disabled={isSigningUp} 
-                        className='bg-[#a60f16] text-white w-full rounded-md py-2 font-medium hover:bg-[#870c12] transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
+                        className='bg-[#a60f16] text-white w-full rounded-md py-2 font-medium hover:bg-[#870c12] transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed'
                     >
                         {isSigningUp ? "Signing Up..." : "Signup"}
                     </button>
