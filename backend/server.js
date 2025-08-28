@@ -16,7 +16,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://new-sbu-club-hub.vercel.app",
+    origin: "https://new-sbu-club-hub.onrender.com",
     credentials: true,
   })
 );
