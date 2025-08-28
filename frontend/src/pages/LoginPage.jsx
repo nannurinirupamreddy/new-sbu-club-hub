@@ -81,7 +81,7 @@ function LoginPage() {
                     <button 
                         type="submit" 
                         disabled={isLoggingIn} 
-                        className="w-full bg-[#a60f16] text-white py-2 rounded-md font-medium hover:bg-[#870c12] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full bg-[#a60f16] text-white py-2 rounded-md font-medium hover:bg-[#870c12] transition-colors disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
                     >
                         {isLoggingIn ? "Logging In..." : "Login"}
                     </button>
