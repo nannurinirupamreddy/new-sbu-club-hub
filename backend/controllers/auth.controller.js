@@ -70,7 +70,12 @@ async function login(req, res) {
 
 async function logout(req, res) {
   try {
-    res.clearCookie("jwt_token");
+    res.clearCookie("jwt_token", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+      path: "/",
+    });
     res.status(200).json({ message: "Logged out succesfully!" });
   } catch (error) {
     console.log("Error in logout route", error);
