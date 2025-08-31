@@ -16,7 +16,8 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://new-sbu-club-hub.onrender.com",
+    origin: ["https://new-sbu-club-hub.onrender.com",
+            "https://visionary-florentine-9f61bc.netlify.app"],
     credentials: true,
   })
 );
