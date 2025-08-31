@@ -28,7 +28,7 @@ function GamesComponent({name, description, availability}) {
                 <>
                     <div className="max-w-fit bg-red-200 flex justify-center items-center p-1.5 rounded-md">
                         <div className="max-w-fit">
-                            <Circle className='bg-red-400 w-4' />
+                            <FaCircle className='text-red-400 w-4' />
                         </div>
                         <div className="max-w-fit ml-1.5">
                             <p className='text-black font-semibold'>Occupied</p>
