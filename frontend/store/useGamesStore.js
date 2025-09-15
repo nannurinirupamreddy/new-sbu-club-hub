@@ -63,7 +63,9 @@ const useGamesStore = create((set) => ({
           ),
           gameToEdit: null
         }));
-        navigate('/admin-panel');
+        if (navigate) {
+          navigate('/admin-panel');
+        }
       }
     } catch (error) {
       console.log("error in editing game react", error);

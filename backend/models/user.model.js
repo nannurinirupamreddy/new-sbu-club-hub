@@ -30,6 +30,10 @@ const userSchema = mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  attendant: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const User = mongoose.model("User", userSchema);

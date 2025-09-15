@@ -2,7 +2,7 @@ import { Circle } from 'lucide-react'
 import { FaCircle } from "react-icons/fa"
 import React from 'react'
 
-function GamesComponent({name, description, availability}) {
+function GamesComponent({name, description, availability, controllersInUse, studentWillingToShare}) {
   return (
     <div className='bg-white w-[90%] sm:w-[600px] max-h-fit p-4 rounded-xl m-4'>
       <div className="font-bold text-3xl">
@@ -37,6 +37,20 @@ function GamesComponent({name, description, availability}) {
                 </>
             )}
         </div>
+        {!availability && (
+            <div className="mt-2">
+                <div className="">
+                    <p className='text-black font-semibold'>Controllers in use: {controllersInUse}</p>
+                </div>
+            </div>
+        )}
+        {!availability && (
+            <div className="mt-2">
+                <div className="">
+                    <p className='text-black font-semibold'>Student willing to share: {studentWillingToShare ? "Yes" : "No"}</p>
+                </div>
+            </div>
+        )}
       </div>
     </div>
   )
