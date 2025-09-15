@@ -33,6 +33,7 @@ async function protectRoute(req, res, next) {
       lastName: user.lastName,
       sbuId: user.sbuId,
       admin: user.admin,
+      attendant: user.attendant,
     };
     next();
   } catch (error) {

@@ -27,9 +27,9 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={!authUser ? <HomePage /> : (!authUser.admin ? <Navigate to={"/dashboard"} /> : <Navigate to={"/admin-panel"} />)} />
-        <Route path='/login' element={!authUser ? <LoginPage /> : (!authUser.admin ? <Navigate to={"/dashboard"} /> : <Navigate to={"/admin-panel"} />)} />
-        <Route path='/signup' element={!authUser ? <SignUpPage /> : (!authUser.admin ? <Navigate to={"/dashboard"} /> : <Navigate to={"/admin-panel"} />)} />
+        <Route path='/' element={!authUser ? <HomePage /> : ((authUser.attendant || authUser.admin) ? <Navigate to={"/admin-panel"} /> : <Navigate to={"/dashboard"} />)} />
+        <Route path='/login' element={!authUser ? <LoginPage /> : (authUser.attendant || authUser.admin) ? <Navigate to={"/admin-panel"} /> : <Navigate to={"/dashboard"} />} />
+        <Route path='/signup' element={!authUser ? <SignUpPage /> : (authUser.attendant || authUser.admin) ? <Navigate to={"/admin-panel"} /> : <Navigate to={"/dashboard"} />} />
         <Route path='/dashboard' element={<DashboardPage />}/>
         <Route path='/admin-panel' element={<AdminHomePage />}/>
         <Route path='/admin-panel/edit-game/:_id' element={<EditGamePage />} />

@@ -17,7 +17,8 @@ app.use(express.json());
 app.use(
   cors({
     origin: ["https://new-sbu-club-hub.onrender.com",
-            "https://visionary-florentine-9f61bc.netlify.app"],
+            "https://visionary-florentine-9f61bc.netlify.app",
+            "http://localhost:5173"],
     credentials: true,
   })
 );

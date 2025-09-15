@@ -29,15 +29,30 @@ async function editGame(req, res) {
   try {
     const { id } = req.params;
 
-    const { name, description, availability } = req.body;
+    const { name, description, availability, numberOfControllers, controllersInUse, studentWillingToShare } = req.body;
+
+    const updateData = {
+      name: name,
+      description: description,
+      availability: availability,
+    };
+
+    // Only update numberOfControllers if provided (admin only)
+    if (numberOfControllers !== undefined) {
+      updateData.numberOfControllers = numberOfControllers;
+    }
+
+    // Only update controllersInUse and studentWillingToShare if provided (attendant only)
+    if (controllersInUse !== undefined) {
+      updateData.controllersInUse = controllersInUse;
+    }
+    if (studentWillingToShare !== undefined) {
+      updateData.studentWillingToShare = studentWillingToShare;
+    }
 
     const game = await Game.findByIdAndUpdate(
       id,
-      {
-        name: name,
-        description: description,
-        availability: availability,
-      },
+      updateData,
       { new: true }
     );
 
@@ -54,15 +69,18 @@ async function editGame(req, res) {
 
 async function addGame(req, res) {
   try {
-    const { name, description, availability } = req.body;
+    const { name, description, availability, numberOfControllers } = req.body;
     
-    console.log('Received game data:', { name, description, availability });
+    console.log('Received game data:', { name, description, availability, numberOfControllers });
     console.log('Full request body:', req.body);
 
     const game = new Game({
       name: name,
       description: description,
       availability: availability !== undefined ? availability : true,
+      numberOfControllers: numberOfControllers || 1,
+      controllersInUse: 0,
+      studentWillingToShare: false,
     });
 
     console.log('Game object being saved:', game);

@@ -22,7 +22,8 @@ function EditGamePage() {
       setFormData({
         name: gameToEdit.name || "",
         description: gameToEdit.description || "",
-        availability: gameToEdit.availability ?? true
+        availability: gameToEdit.availability ?? true,
+        numberOfControllers: gameToEdit.numberOfControllers || 1
       });
     }
   }, [gameToEdit]);
@@ -30,7 +31,8 @@ function EditGamePage() {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
-    availability: true
+    availability: true,
+    numberOfControllers: 1
   });
 
   const navigate = useNavigate();
@@ -77,6 +79,17 @@ function EditGamePage() {
                   <option value="true">Available</option>
                   <option value="false">Occupied</option>
                 </select>
+              </div>
+              <div className="w-full mb-4">
+                <label className='font-semibold text-lg'>Number of Controllers</label>
+                <input 
+                  type="number" 
+                  min="1" 
+                  placeholder='Enter number of controllers' 
+                  className='w-full border border-gray-300 rounded-md p-2 mt-2 focus:outline-none focus:ring-2 focus:ring-primary' 
+                  onChange={(e) => setFormData({ ...formData, numberOfControllers: parseInt(e.target.value) || 1 })} 
+                  value={formData.numberOfControllers}
+                />
               </div>
               <div className="w-full flex justify-end items-center">
                 <button type="submit" className='bg-primary text-white px-4 py-2 rounded-md cursor-pointer'>Save Changes</button>

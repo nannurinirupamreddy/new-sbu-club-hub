@@ -33,7 +33,7 @@ function DashboardPage() {
       <div className="bg-gray-50 min-h-screen w-full flex justify-center p-4 max-w-full">
         {!games ? <h1 className='text-center font-bold text-2xl'>No games found!</h1> : (
           <div className="flex flex-col justify-center items-center w-full max-w-full max-h-full">
-            {games.map((game, index) => { return (<GamesComponent name={game.name} description={game.description} availability={game.availability} key={index} />)})}
+            {games.map((game, index) => { return (<GamesComponent name={game.name} description={game.description} availability={game.availability} controllersInUse={game.controllersInUse} studentWillingToShare={game.studentWillingToShare} key={index} />)})}
           </div>
         )}
       </div>
