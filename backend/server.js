@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const gameRouter = require("./routes/games.route");
 const cors = require("cors");
 const connectDB = require("./utils/db");
+const defaultRoute = require("./routes/default.route");
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use(
   })
 );
 
+app.use("/", defaultRoute);
 app.use("/api/auth/", authRoute);
 app.use("/api/games/", gameRouter);
 
