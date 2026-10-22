@@ -12,7 +12,7 @@ const isAdminOrAtt = require("../middleware/isAdminOrAtt");
 
 const router = express.Router();
 
-router.post("/", addGame);
+router.post("/", protectRoute, isAdmin, addGame);
 router.get("/", protectRoute, getGames);
 router.get("/:id", protectRoute, isAdmin, getGameById);
 router.put("/:id", protectRoute, isAdminOrAtt, editGame);

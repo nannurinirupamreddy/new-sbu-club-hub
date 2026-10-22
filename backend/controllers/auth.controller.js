@@ -31,8 +31,7 @@ async function signup(req, res) {
       sbuId: user.sbuId,
       email: user.email,
       admin: user.admin,
-      admin: admin,
-      attendant: attendant,
+      attendant: user.attendant,
     });
   } catch (error) {
     console.log("Error in signup route", error);
