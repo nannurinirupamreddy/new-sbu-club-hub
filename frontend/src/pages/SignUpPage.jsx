@@ -51,7 +51,7 @@ function SignUpPage() {
             <div className="flex justify-center p-4 bg-gray-50">
                 <img 
                     src="/wolfie-hello.jpg" 
-                    alt="Wolfie Hello" 
+                    alt="" 
                     className='h-20 w-20 object-cover rounded-full shadow-md'
                 />
             </div>
@@ -67,6 +67,8 @@ function SignUpPage() {
                         <input 
                             type="text" 
                             id="firstName" 
+                            autoComplete="given-name"
+                            aria-required="true" 
                             placeholder='Enter your first name' 
                             className='w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a60f16] focus:border-transparent' 
                             value={formData.firstName} 
@@ -79,6 +81,8 @@ function SignUpPage() {
                         <input 
                             type="text" 
                             id="lastName" 
+                            autoComplete="family-name"
+                            aria-required="true" 
                             placeholder='Enter your last name' 
                             className='w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a60f16] focus:border-transparent' 
                             value={formData.lastName} 
@@ -89,13 +93,17 @@ function SignUpPage() {
                     <div>
                         <label htmlFor="sbuId" className='block text-sm font-medium text-gray-600 mb-1'>SBU ID#*</label>
                         <input 
-                            type="number" 
+                            type="text" 
+                            inputMode="numeric"
                             id="sbuId" 
+                            aria-required="true"
+                            aria-describedby="sbuId-hint" 
                             placeholder='000000000' 
                             className='w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a60f16] focus:border-transparent' 
                             value={formData.sbuId} 
-                            onChange={(e) => setFormData({...formData, sbuId: e.target.value})}
+                            onChange={(e) => setFormData({...formData, sbuId: e.target.value.replace(/\D/g, "")})}
                         />
+                        <p id="sbuId-hint" className="text-xs text-gray-600 mt-1">9 digits</p>
                     </div>
                     
                     <div>
@@ -103,6 +111,8 @@ function SignUpPage() {
                         <input 
                             type="email" 
                             id="email" 
+                            autoComplete="email"
+                            aria-required="true" 
                             placeholder='example@stonybrook.edu' 
                             className='w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a60f16] focus:border-transparent' 
                             value={formData.email} 
@@ -115,17 +125,24 @@ function SignUpPage() {
                         <input 
                             type={showPassword ? "text" : "password"} 
                             id="password" 
+                            autoComplete="new-password"
+                            aria-required="true"
+                            aria-describedby="password-hint" 
                             placeholder='Enter your password' 
                             className='w-full p-2 pr-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a60f16] focus:border-transparent' 
                             value={formData.password} 
                             onChange={(e) => setFormData({...formData, password: e.target.value})}
                         />
+                        <p id="password-hint" className="text-xs text-gray-600 mt-1">At least 8 characters</p>
                         <button 
                             type="button" 
                             onClick={() => setShowPassword(!showPassword)} 
-                            className='absolute right-2 top-7 text-gray-500 hover:text-gray-700'
+                            aria-label={showPassword ? "Hide password" : "Show password"}
+                            aria-pressed={showPassword}
+                            aria-controls="password"
+                            className='absolute right-1 top-6 p-1.5 min-w-8 min-h-8 flex items-center justify-center rounded text-gray-500 hover:text-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#a60f16]'
                         >
-                            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                            {showPassword ? <EyeOff size={20} aria-hidden="true" /> : <Eye size={20} aria-hidden="true" />}
                         </button>
                     </div>
                     

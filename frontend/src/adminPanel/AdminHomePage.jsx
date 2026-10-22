@@ -25,8 +25,9 @@ function AdminHomePage() {
 
     if (isLoadingGames && !games) {
       return (
-        <div className='flex items-center justify-center h-screen w-full max-w-full'>
-            <Loader className='size-10 animate-spin' />
+        <div className='flex items-center justify-center h-screen w-full max-w-full' role="status" aria-live="polite">
+            <Loader className='size-10 animate-spin' aria-hidden="true" />
+            <span className="sr-only">Loading games</span>
         </div>
       )
     }
@@ -34,9 +35,10 @@ function AdminHomePage() {
   return (
     <div className='w-full max-w-full h-screen'>
         <NavBarLoggedIn />
-        <div className='bg-gray-50 w-full p-4 max-w-full h-fit'>
-          <div className="flex justify-end w-full max-w-full h-fit">
-            <button className='bg-primary text-white px-4 py-2 rounded-md cursor-pointer' onClick={() => navigate("/admin-panel/add-game")}>Add Game</button>
+        <main className='bg-gray-50 w-full p-4 max-w-full h-fit'>
+          <div className="flex justify-between items-center w-full max-w-full h-fit">
+            <h1 className="font-bold text-2xl">{authUser.admin ? "Manage games" : "Update game status"}</h1>
+            {authUser.admin && <button className='bg-primary text-white px-4 py-2 rounded-md cursor-pointer' onClick={() => navigate("/admin-panel/add-game")}>Add Game</button>}
           </div>
           <div className="flex flex-col justify-center items-center w-full max-w-full max-h-full mt-4">
             {games.map((game, index) => {
@@ -56,7 +58,7 @@ function AdminHomePage() {
               }
             })}
           </div>
-        </div>
+        </main>
     </div>
   )
 }

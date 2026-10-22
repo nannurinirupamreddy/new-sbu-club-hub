@@ -16,16 +16,16 @@ function HomePage() {
               <h1 className='text-4xl font-bold'>Enjoy your time at <span className='text-primary font-extrabold'>SBU's Club Hub</span></h1>
               <p className="text-2xl font-bold">Join Stony Brook University's premier gaming community. Connect with fellow gamers, compete in
                   tournaments, and be part of something bigger.</p>
-              <Link to={"/signup"}><button className='btn btn-primary hover:bg-primary/90 text-lg px-8'>Join the community</button></Link>
+              <Link to={"/signup"} className='btn btn-primary hover:bg-primary/90 text-lg px-8'>Join the community</Link>
             </div>
             <div className="relative flex justify-center items-center">
                 <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 p-8 flex items-center justify-center">
                   <img src="/club-hub-main.jpg" className='w-full h-full object-cover rounded-xl' alt="" />
                 </div>
-                <div className="absolute -top-4 -right-4 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-semibold shadow-lg text-white">
+                <div aria-hidden="true" className="absolute -top-4 -right-4 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-semibold shadow-lg text-white">
                   🏆 #1 Gaming Club
                 </div>
-                <div className="absolute -bottom-4 -left-4 bg-gray-50 text-card-foreground px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                <div aria-hidden="true" className="absolute -bottom-4 -left-4 bg-gray-50 text-card-foreground px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                   🎯 All Skill Levels
                 </div>
             </div>

@@ -4,7 +4,7 @@ import React from 'react'
 
 function GamesComponent({name, description, availability, controllersInUse, studentWillingToShare}) {
   return (
-    <div className='bg-white w-[90%] sm:w-[600px] max-h-fit p-4 rounded-xl m-4'>
+    <article aria-label={name} className='bg-white w-[90%] sm:w-[600px] max-h-fit p-4 rounded-xl m-4'>
       <div className="font-bold text-3xl">
         <h2>{name}</h2>
       </div>
@@ -17,7 +17,7 @@ function GamesComponent({name, description, availability, controllersInUse, stud
                 <>
                     <div className="max-w-fit bg-green-200 flex justify-center items-center p-1.5 rounded-md">
                         <div className="max-w-fit">
-                            <FaCircle className='text-green-400' />
+                            <FaCircle className='text-green-400' aria-hidden="true" />
                         </div>
                         <div className="max-w-fit ml-1.5">
                             <p className='text-black font-semibold'>Available</p>
@@ -28,7 +28,7 @@ function GamesComponent({name, description, availability, controllersInUse, stud
                 <>
                     <div className="max-w-fit bg-red-200 flex justify-center items-center p-1.5 rounded-md">
                         <div className="max-w-fit">
-                            <FaCircle className='text-red-400 w-4' />
+                            <FaCircle className='text-red-400 w-4' aria-hidden="true" />
                         </div>
                         <div className="max-w-fit ml-1.5">
                             <p className='text-black font-semibold'>Occupied</p>
@@ -52,7 +52,7 @@ function GamesComponent({name, description, availability, controllersInUse, stud
             </div>
         )}
       </div>
-    </div>
+    </article>
   )
 }
 

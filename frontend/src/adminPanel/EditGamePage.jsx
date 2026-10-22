@@ -53,25 +53,26 @@ function EditGamePage() {
       <NavBarLoggedIn />
       <div className='w-full max-w-full h-screen'>
         <div className="w-full max-w-full h-fit p-4 flex justify-start items-center">
-          <button className='bg-primary text-white px-4 py-2 rounded-md cursor-pointer' onClick={() => navigate(-1)}><ArrowLeft className='w-4 h-4' /></button>
+          <button className='bg-primary text-white px-4 py-2 rounded-md cursor-pointer' onClick={() => navigate(-1)} aria-label="Go back"><ArrowLeft className='w-4 h-4' aria-hidden="true" /></button>
         </div>
-        <div className="flex-col gap-6 ">
+        <main className="flex-col gap-6 ">
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col justify-start items-start w-[90%] sm:w-[600px] m-auto">
               <div className="font-bold text-3xl mb-4">
-                <h2>Edit Game</h2>
+                <h1>Edit Game</h1>
               </div>
               <div className="w-full mb-4">
-                <label className='font-semibold text-lg'>Game Name</label>
-                <input type="text" placeholder='Enter game name' className='w-full border border-gray-300 rounded-md p-2 mt-2 focus:outline-none focus:ring-2 focus:ring-primary' onChange={(e) => setFormData({ ...formData, name: e.target.value })} value={formData.name} />
+                <label htmlFor="game-name" className='font-semibold text-lg'>Game Name</label>
+                <input id="game-name" type="text" aria-required="true" placeholder='Enter game name' className='w-full border border-gray-300 rounded-md p-2 mt-2 focus:outline-none focus:ring-2 focus:ring-primary' onChange={(e) => setFormData({ ...formData, name: e.target.value })} value={formData.name} />
               </div>
               <div className="w-full mb-4">
-                <label className='font-semibold text-lg'>Description</label>
-                <textarea placeholder='Enter game description' className='w-full border border-gray-300 rounded-md p-2 mt-2 focus:outline-none focus:ring-2 focus:ring-primary' rows={4} onChange={(e) => setFormData({ ...formData, description: e.target.value })} value={formData.description}></textarea>
+                <label htmlFor="game-description" className='font-semibold text-lg'>Description</label>
+                <textarea id="game-description" placeholder='Enter game description' className='w-full border border-gray-300 rounded-md p-2 mt-2 focus:outline-none focus:ring-2 focus:ring-primary' rows={4} onChange={(e) => setFormData({ ...formData, description: e.target.value })} value={formData.description}></textarea>
               </div>
               <div className="w-full mb-4">
-                <label className='font-semibold text-lg'>Availability</label>
+                <label htmlFor="game-availability" className='font-semibold text-lg'>Availability</label>
                 <select 
+                  id="game-availability" 
                   className='w-full border border-gray-300 rounded-md p-2 mt-2 focus:outline-none focus:ring-2 focus:ring-primary' 
                   onChange={(e) => setFormData({ ...formData, availability: e.target.value === "true" })} 
                   value={String(formData.availability)}
@@ -81,8 +82,9 @@ function EditGamePage() {
                 </select>
               </div>
               <div className="w-full mb-4">
-                <label className='font-semibold text-lg'>Number of Controllers</label>
+                <label htmlFor="game-controllers" className='font-semibold text-lg'>Number of Controllers</label>
                 <input 
+                  id="game-controllers" 
                   type="number" 
                   min="1" 
                   placeholder='Enter number of controllers' 
@@ -96,7 +98,7 @@ function EditGamePage() {
               </div>
             </div>
           </form>
-        </div>
+        </main>
       </div>
     </>
   )

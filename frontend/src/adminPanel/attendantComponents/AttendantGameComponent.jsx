@@ -41,7 +41,7 @@ function AttendantGameComponent({_id, name, description, availability, numberOfC
     };
 
   return (
-    <div className='bg-white w-[90%] sm:w-[600px] max-h-fit p-4 rounded-xl m-4 flex justify-between items-center'>
+    <article aria-label={name} className='bg-white w-[90%] sm:w-[600px] max-h-fit p-4 rounded-xl m-4 flex justify-between items-center'>
         <div className="w-[90%] h-[100%] flex flex-col justify-start items-start">
             <div className="font-bold text-3xl">
                 <h2>{name}</h2>
@@ -54,8 +54,9 @@ function AttendantGameComponent({_id, name, description, availability, numberOfC
             </div>
             <form onSubmit={handleSubmit} className='w-full'>
                 <div className="w-full mb-3">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Availability</label>
+                    <label htmlFor={`availability-${_id}`} className="block text-sm font-medium text-gray-700 mb-1">Availability</label>
                     <select 
+                        id={`availability-${_id}`}
                         className='w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-primary' 
                         onChange={(e) => handleAvailabilityChange(e.target.value)} 
                         value={String(formData.availability)}
@@ -67,12 +68,12 @@ function AttendantGameComponent({_id, name, description, availability, numberOfC
                 
                 {!formData.availability && (
                     <div className='w-full mb-3'>
-                        <label htmlFor="controllers" className="block text-sm font-medium text-gray-700 mb-1">
+                        <label htmlFor={`controllers-${_id}`} className="block text-sm font-medium text-gray-700 mb-1">
                             Number of controllers being used? (Max: {numberOfControllers || 1})
                         </label>
                         <input 
                             type="number" 
-                            id="controllers" 
+                            id={`controllers-${_id}`} 
                             min="0" 
                             max={numberOfControllers || 1}
                             className='w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-primary' 
@@ -84,11 +85,11 @@ function AttendantGameComponent({_id, name, description, availability, numberOfC
                 
                 {!formData.availability && (
                     <div className='w-full mb-3'>
-                        <label htmlFor="willingToShare" className="block text-sm font-medium text-gray-700 mb-1">
+                        <label htmlFor={`share-${_id}`} className="block text-sm font-medium text-gray-700 mb-1">
                             Is student willing to share?
                         </label>
                         <select 
-                            id="willingToShare" 
+                            id={`share-${_id}`} 
                             className='w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-primary'
                             value={String(formData.studentWillingToShare)}
                             onChange={(e) => setFormData({...formData, studentWillingToShare: e.target.value === "true"})}
@@ -157,7 +158,7 @@ function AttendantGameComponent({_id, name, description, availability, numberOfC
             </button>
         </div> */}
 
-    </div>
+    </article>
   )
 }
 

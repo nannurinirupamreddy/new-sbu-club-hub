@@ -6,11 +6,13 @@ function NavBarDefault() {
     <header className='bg-white p-4 max-w-full m-0'>
       <div className="flex justify-between items-center">
         <div className="w-[50%]">
-            <Link to={"/"}><img src="/seawolf.png" alt="SBU Logo" className='w-[50px]' /></Link>
+            <Link to={"/"} aria-label="SBU Club Hub home"><img src="/seawolf.png" alt="" className='w-[50px]' /></Link>
         </div>
         <div className="w-[50%] flex justify-end gap-2">
-            <Link to={"/login"}><button className='btn btn-primary btn-outline cursor-pointer'>Login</button></Link>
-            <Link to={"/signup"}><button className='btn btn-primary cursor-pointer'>Signup</button></Link>
+            <nav aria-label="Account" className="flex gap-2">
+              <Link to={"/login"} className='btn btn-primary btn-outline'>Login</Link>
+              <Link to={"/signup"} className='btn btn-primary'>Signup</Link>
+            </nav>
         </div>
       </div>
     </header>

@@ -36,7 +36,7 @@ function LoginPage() {
             <div className="flex justify-center p-4 bg-gray-50">
                 <img 
                     src="/seawolves.png" 
-                    alt="Seawolves" 
+                    alt="" 
                     className='h-20 w-20 object-contain'
                 />
             </div>
@@ -52,6 +52,7 @@ function LoginPage() {
                         <input
                             type="email"
                             id="email"
+                            autoComplete="email"
                             className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a60f16] focus:border-transparent"
                             placeholder="example@stonybrook.edu"
                             value={formData.email}
@@ -64,6 +65,7 @@ function LoginPage() {
                         <input
                             type={showPassword ? "text" : "password"}
                             id="password"
+                            autoComplete="current-password"
                             className="w-full p-2 pr-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a60f16] focus:border-transparent"
                             placeholder="********"
                             value={formData.password}
@@ -72,9 +74,12 @@ function LoginPage() {
                         <button 
                             type="button" 
                             onClick={() => setShowPassword(!showPassword)} 
-                            className='absolute right-2 top-7 text-gray-500 hover:text-gray-700'
+                            aria-label={showPassword ? "Hide password" : "Show password"}
+                            aria-pressed={showPassword}
+                            aria-controls="password"
+                            className='absolute right-1 top-6 p-1.5 min-w-8 min-h-8 flex items-center justify-center rounded text-gray-500 hover:text-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#a60f16]'
                         >
-                            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                            {showPassword ? <EyeOff size={20} aria-hidden="true" /> : <Eye size={20} aria-hidden="true" />}
                         </button>
                     </div>
                     

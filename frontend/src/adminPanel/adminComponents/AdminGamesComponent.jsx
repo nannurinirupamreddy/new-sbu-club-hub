@@ -18,7 +18,7 @@ function AdminGamesComponent({_id, name, description, availability}) {
     };
 
   return (
-    <div className='bg-white w-[90%] sm:w-[600px] max-h-fit p-4 rounded-xl m-4 flex justify-between items-center'>
+    <article aria-label={name} className='bg-white w-[90%] sm:w-[600px] max-h-fit p-4 rounded-xl m-4 flex justify-between items-center'>
         <div className="w-[90%] h-[100%] flex flex-col justify-start items-start">
             <div className="font-bold text-3xl">
                 <h2>{name}</h2>
@@ -32,7 +32,7 @@ function AdminGamesComponent({_id, name, description, availability}) {
                         <>
                             <div className="max-w-fit bg-green-200 flex justify-center items-center p-1.5 rounded-md">
                                 <div className="max-w-fit">
-                                    <FaCircle className='text-green-400' />
+                                    <FaCircle className='text-green-400' aria-hidden="true" />
                                 </div>
                                 <div className="max-w-fit ml-1.5">
                                     <p className='text-black font-semibold'>Available</p>
@@ -43,7 +43,7 @@ function AdminGamesComponent({_id, name, description, availability}) {
                         <>
                             <div className="max-w-fit bg-red-200 flex justify-center items-center p-1.5 rounded-md">
                                 <div className="max-w-fit">
-                                    <FaCircle className='text-red-400 w-4' />
+                                    <FaCircle className='text-red-400 w-4' aria-hidden="true" />
                                 </div>
                                 <div className="max-w-fit ml-1.5">
                                     <p className='text-black font-semibold'>Occupied</p>
@@ -58,23 +58,25 @@ function AdminGamesComponent({_id, name, description, availability}) {
             <button 
                 className='bg-primary text-white px-4 py-2 rounded-md cursor-pointer hover:bg-primary/90 transition-colors'
                 onClick={() => navigate(`/admin-panel/edit-game/${_id}`)}
+                aria-label={`Edit ${name}`}
             >
-                <Pencil className='w-4 h-4' />
+                <Pencil className='w-4 h-4' aria-hidden="true" />
             </button>
             <button 
                 className='bg-red-600 text-white px-4 py-2 rounded-md cursor-pointer hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
                 onClick={handleDelete}
                 disabled={isDeletingGame}
+                aria-label={isDeletingGame ? `Deleting ${name}` : `Delete ${name}`}
             >
                 {isDeletingGame ? (
-                    <Loader className='w-4 h-4 animate-spin' />
+                    <Loader className='w-4 h-4 animate-spin' aria-hidden="true" />
                 ) : (
-                    <Trash className='w-4 h-4' />
+                    <Trash className='w-4 h-4' aria-hidden="true" />
                 )}
             </button>
         </div>
 
-    </div>
+    </article>
   )
 }
 
