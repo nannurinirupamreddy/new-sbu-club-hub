@@ -11,8 +11,10 @@ const userSchema = mongoose.Schema({
   },
   sbuId: {
     type: Number,
-    minlength: 9,
-    maxlenght: 9,
+    // Stony Brook IDs are exactly 9 digits. minlength/maxlength only apply to
+    // strings, so a 9-digit number is enforced with a numeric range instead.
+    min: [100000000, "SBU ID must be 9 digits"],
+    max: [999999999, "SBU ID must be 9 digits"],
     unique: true,
     required: true,
   },

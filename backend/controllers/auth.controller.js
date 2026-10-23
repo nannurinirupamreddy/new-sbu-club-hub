@@ -5,6 +5,11 @@ const generateToken = require("../utils/token");
 async function signup(req, res) {
   const { firstName, lastName, sbuId, email, password } = req.body;
 
+  // The schema only sees the hashed password, so check the real length here.
+  if (typeof password !== "string" || password.length < 8) {
+    return res.status(400).json({ message: "Password must be at least 8 characters" });
+  }
+
   try {
     const ifUserExists = await User.findOne({ $or: [{ email: email }, { sbuId: sbuId }] });
 
@@ -34,6 +39,11 @@ async function signup(req, res) {
       attendant: user.attendant,
     });
   } catch (error) {
+    // Bad input (e.g. an SBU ID that isn't 9 digits) is the client's error, not a 500.
+    if (error.name === "ValidationError") {
+      const message = Object.values(error.errors)[0]?.message || "Invalid input";
+      return res.status(400).json({ message });
+    }
     console.log("Error in signup route", error);
     return res.status(500).json({ message: "Internal Server Error!" });
   }
